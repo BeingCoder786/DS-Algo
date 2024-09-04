@@ -1,0 +1,24 @@
+class Solution {
+    fun groupAnagrams(strs: Array<String>): List<List<String>> {
+    val map = mutableMapOf<String, MutableList<String>>()
+
+    for (str in strs) {
+        // Sort characters of the string to create the key
+        val sortedStr = str.toCharArray().sorted().joinToString("")
+
+        // Retrieve the list or create a new one if it doesn't exist
+        val list = map[sortedStr] ?: mutableListOf()
+        
+        // Add the string to the list
+        list.add(str)
+
+        // Put the list back into the map
+        map[sortedStr] = list
+    }
+
+    // Return the values as a list of lists
+    print(map)
+    return map.values.toList()
+}
+
+}
