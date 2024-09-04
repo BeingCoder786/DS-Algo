@@ -1,0 +1,33 @@
+
+import java.util.*
+fun main()
+{
+    print("enter string")
+    val scanner = Scanner(System.`in`)
+    val s = "abcabcbb"
+     println(s)
+    val map = mutableMapOf<Char,Int>()
+    var count =0
+    var max =0
+    for(i in 0 until s.length){
+        count =0
+        for(j in i until s.length){
+            if(!map.containsKey(s[j]))
+            {
+                count++
+                map[s[j]] = map.getOrDefault(s[j],0)+1
+            }
+            else{
+                max = maxOf(max,count)
+                map.clear()
+                break;
+            }
+            
+         
+        }
+        max  = maxOf(max,count)
+    }
+
+    println("maximum legnth of substring without repeatin character is $max")
+
+}
