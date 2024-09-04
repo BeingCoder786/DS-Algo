@@ -1,0 +1,20 @@
+class Solution {
+    fun isValid(s: String): Boolean {
+
+       var s1 = Stack<Char>()
+               for (i in 0 until s.length) {
+            if (s[i] == '(' || s[i] == '{' || s[i] == '[') {
+                s1.push(s[i])
+            } else if (s1.isNotEmpty() && s[i] == ')' && s1.peek() == '(') {
+                s1.pop()
+            } else if (s1.isNotEmpty() && s[i] == '}' && s1.peek() == '{') {
+                s1.pop()
+            } else if (s1.isNotEmpty() && s[i] == ']' && s1.peek() == '[') {
+                s1.pop()
+            } else {
+                return false
+            }
+        }
+        return s1.isEmpty()
+    }
+}
