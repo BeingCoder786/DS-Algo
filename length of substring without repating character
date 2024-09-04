@@ -31,3 +31,32 @@ fun main()
     println("maximum legnth of substring without repeatin character is $max")
 
 }
+
+
+// optimize-
+class Solution {
+ fun lengthOfLongestSubstring(s: String): Int {
+    val a = IntArray(128) // Create an array to count occurrences of characters
+
+    var start = 0
+    var end = 0
+    var max = 0
+
+    // Sliding window
+    while (end < s.length) {
+        a[s[end].toInt()]++ // Increment the count for the current character
+
+        if (a[s[end].toInt()] > 1) { // If there is a duplicate character
+            while (a[s[end].toInt()] > 1) {
+                a[s[start].toInt()]-- // Decrease count for the start character
+                start++ // Move the start of the window
+            }
+        }
+        
+        max = maxOf(max, end - start + 1) // Update the maximum length
+        end++ // Move the end of the window
+    }
+    return max
+}
+
+}
