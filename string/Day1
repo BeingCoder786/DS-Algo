@@ -1,0 +1,18 @@
+    fun isAnagram(s: String, t: String): Boolean {
+        val s1= s.toCharArray()
+        val t1= t.toCharArray()
+     if(s1.size != t1.size)
+     return false;
+
+       s1.sort()
+       t1.sort()
+        for(i in s1.indices)
+        {
+            if(s1.get(i)!=t1.get(i))
+            return false
+        }
+        
+        return true
+
+ 
+    }
