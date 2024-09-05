@@ -1,0 +1,39 @@
+
+class Solution {
+    fun countSubstrings(s: String): Int {
+    if (s.length == 1) return 1
+
+    var count = 0
+
+    for (i in 1 until s.length) {
+        var left = i - 1
+        var right = i
+
+        // Check for even-length palindromes
+        while (left >= 0 && right < s.length && s[left] == s[right]) {
+            count++
+            left--
+            right++
+        }
+
+        left = i - 1
+        right = i + 1
+
+        // Check for odd-length palindromes
+        while (left >= 0 && right < s.length && s[left] == s[right]) {
+            count++
+            left--
+            right++
+        }
+    }
+
+    // Check for single character palindromes
+    for (i in s.indices) {
+        count++ // Each single character is a palindrome
+    }
+
+    return count
+}
+
+    }
+    
