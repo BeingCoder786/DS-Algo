@@ -1,0 +1,67 @@
+class Solution {
+    fun longestPalindrome(s: String): String {
+    var max = 0
+    var longestPalindrome = ""  // To store the longest palindromic substring
+    var temp: String
+
+    for (i in 0 until s.length) {
+        temp = ""
+        for (j in i until s.length) {
+            temp += s[j]  // Append each character to temp
+            val reverse = temp.reversed()  // Reverse the temp string
+            if (temp == reverse) {  // Check if the current temp is a palindrome
+                if (temp.length > max) {  // Update max length and the longest palindrome
+                    max = temp.length
+                    longestPalindrome = temp
+                }
+            }
+        }
+    }
+    
+    return longestPalindrome  // Return the longest palindromic substring
+        
+    }
+}
+
+
+//optimize-
+class Solution {
+    fun longestPalindrome(s: String): String {
+        if (s.length == 1) {
+            return s
+        }
+
+        var maxlength = 1
+        var start = 0
+
+        for (i in 1 until s.length) {
+            var left = i - 1
+            var right = i
+
+            // Check for even-length palindromes
+            while (left >= 0 && right < s.length && s[left] == s[right]) {
+                if (right - left + 1 > maxlength) {
+                    maxlength = right - left + 1
+                    start = left
+                }
+                left--
+                right++
+            }
+
+            left = i - 1
+            right = i + 1
+
+            // Check for odd-length palindromes
+            while (left >= 0 && right < s.length && s[left] == s[right]) {
+                if (right - left + 1 > maxlength) {
+                    maxlength = right - left + 1
+                    start = left
+                }
+                left--
+                right++
+            }
+        }
+
+        return s.substring(start, start + maxlength)
+    }
+}
