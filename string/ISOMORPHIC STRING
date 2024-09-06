@@ -1,0 +1,36 @@
+class Solution {
+    fun isIsomorphic(s: String, t: String): Boolean {
+        val l1 = s.length
+        val l2 = t.length
+
+        if (l1 != l2) {
+            return false
+        }
+
+        val m1 = mutableMapOf<Char, Char>()
+        val m2 = mutableMapOf<Char, Char>()
+
+        for (i in 0 until l1) {
+            val charS = s[i]
+            val charT = t[i]
+
+            if (!m1.containsKey(charS)) {
+                m1[charS] = charT
+            }
+            if (!m2.containsKey(charT)) {
+                m2[charT] = charS
+            }
+        }
+
+        for (i in 0 until l1) {
+            val charS = s[i]
+            val charT = t[i]
+
+            if (m1[charS] != charT || m2[charT] != charS) {
+                return false
+            }
+        }
+
+        return true
+    }
+}
