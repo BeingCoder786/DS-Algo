@@ -1,0 +1,23 @@
+// indexoF shrink string unitll prefix not match
+
+class Solution {
+    fun longestCommonPrefix(strs: Array<String>): String {
+          
+         var result = strs[0];
+
+        for( i in 1 until strs.size){
+
+            while(strs[i].indexOf(result)!=0){
+
+                result = result.substring(0,result.length-1);
+
+                if(result=="")
+                return ""
+            }
+
+        }
+        return result
+    }
+        
+    
+}
