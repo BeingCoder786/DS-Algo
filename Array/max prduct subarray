@@ -1,0 +1,27 @@
+class Solution {
+    fun maxProduct(nums: IntArray): Int {
+        var max = Int.MIN_VALUE
+        var product = 1
+         for(i in 0 until nums.size){
+              product*= nums[i]
+              if(max<product)
+                max = product
+
+                if(nums[i]==0)
+                   product =1
+
+         }
+               product=1
+        for( i in nums.size-1 downTo 0)
+        {
+          product*=nums[i];
+
+          max=maxOf(product,max);
+          if(product==0)
+           product=1;
+        }
+        return max
+
+        
+    }
+}
