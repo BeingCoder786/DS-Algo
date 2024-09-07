@@ -1,0 +1,20 @@
+class Solution {
+    fun maxProfit(prices: IntArray): Int {
+        
+        var minn = Int.MAX_VALUE
+        var maxx = 0
+
+        for(i in 0 until prices.size){
+              var prices = prices[i]
+               if(prices<minn){
+                minn = prices
+               }
+               else{
+                    if(maxx<(prices-minn))
+                        maxx = prices-minn
+               }
+        }
+        return maxx
+    
+}
+}
