@@ -1,3 +1,4 @@
+
 class Solution {
     fun threeSum(nums: IntArray): List<List<Int>> {
         val list = mutableListOf<List<Int>>()
@@ -22,3 +23,39 @@ class Solution {
         return list;
     }
 }
+
+
+optimize using map-
+
+class Solution {
+    fun threeSum(nums: IntArray): List<List<Int>> {
+        val result = mutableSetOf<List<Int>>()
+
+        // Sort the array to handle duplicates more easily
+        nums.sort()
+
+        // Iterate through each number in the array
+        for (i in nums.indices) {
+
+            // Create a map to store complements (for two-sum problem)
+            val map = mutableMapOf<Int, Int>()
+
+            // Iterate from i+1 to the end of the array to find pairs
+            for (j in i + 1 until nums.size) {
+                val complement = -nums[i] - nums[j]
+
+                if (map.containsKey(complement)) {
+                    // If the complement is found, we've found a valid triplet
+                    result.add(listOf(nums[i], nums[j], complement).sorted())
+                }
+
+                // Add the current number to the map
+                map[nums[j]] = j
+            }
+        }
+
+        // Convert result to a list
+        return result.toList()
+    }
+}
+
