@@ -1,0 +1,16 @@
+class Solution {
+    fun majorityElement(nums: IntArray): List<Int> {
+         var list = mutableListOf<Int>()
+         var count = nums.size/3
+         var map = mutableMapOf<Int,Int>()
+         for(i in 0 until nums.size){
+             map[nums[i]] = map.getOrDefault(nums[i],0)+1
+         }
+         print(map)
+
+         for((key,value)in map){
+            if(value>count) list.add(key)
+         }
+         return list
+    }
+}
