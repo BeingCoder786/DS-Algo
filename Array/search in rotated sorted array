@@ -1,0 +1,32 @@
+class Solution {
+   fun search(arr: IntArray, target: Int): Int {
+    var start = 0
+    var end = arr.size - 1
+
+    while (start <= end) {
+        val mid = (start + end) / 2
+        if (arr[mid] == target) return mid
+
+        // If the left part is sorted
+        if (arr[start] <= arr[mid]) {
+            if (arr[start] <= target && target <= arr[mid]) {
+                // Element exists in the left part
+                end = mid - 1
+            } else {
+                // Element does not exist in the left part
+                start = mid + 1
+            }
+        } else {
+            // If the right part is sorted
+            if (arr[mid] <= target && target<= arr[end]) {
+                // Element exists in the right part
+                start = mid + 1
+            } else {
+                // Element does not exist in the right part
+                end = mid - 1
+            }
+        }
+    }
+    return -1
+   }
+}
