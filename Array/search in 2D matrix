@@ -1,0 +1,14 @@
+class Solution {
+    fun searchMatrix(matrix: Array<IntArray>, target: Int): Boolean {
+        
+        val row = matrix.size
+        val column = matrix[0].size
+        for( i in 0 until row ){
+            for(j in 0 until column){
+                if(matrix[i][j]==target)
+                 return true
+            }
+        }
+        return false
+    }
+}
