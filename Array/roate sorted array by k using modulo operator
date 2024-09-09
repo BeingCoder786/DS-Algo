@@ -1,0 +1,14 @@
+class Solution {
+    fun rotate(nums: IntArray, k: Int): Unit {
+              var temp = IntArray(nums.size){ 0 }
+        var i =0
+        for(i in 0 until nums.size)
+        {
+            temp[(i+k)%nums.size]=nums[i];
+        }
+        for(i in 0 until nums.size)
+        {
+          nums[i]=temp[i]; 
+    }
+    }
+}
