@@ -16,3 +16,37 @@ class Solution {
           }
     }
 }
+
+optimized-
+fun sortColors(nums: IntArray) {
+    var low = 0
+    var mid = 0
+    var high = nums.size - 1
+
+    while (mid <= high) {
+        when (nums[mid]) {
+            0 -> {
+                // Swap nums[low] and nums[mid], then increment both
+                nums.swap(low, mid)
+                low++
+                mid++
+            }
+            1 -> {
+                // If the current value is 1, just move forward
+                mid++
+            }
+            2 -> {
+                // Swap nums[mid] and nums[high], then decrement high
+                nums.swap(mid, high)
+                high--
+            }
+        }
+    }
+}
+
+// Extension function to swap elements in the array
+private fun IntArray.swap(i: Int, j: Int) {
+    val temp = this[i]
+    this[i] = this[j]
+    this[j] = temp
+}
