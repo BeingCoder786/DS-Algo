@@ -1,0 +1,16 @@
+class Solution {
+    fun moveZeroes(nums: IntArray): Unit {
+        var lastNonZeroFoundAt = 0
+
+    for (current in nums.indices) {
+        if (nums[current] != 0) {
+            // Swap elements
+            nums[lastNonZeroFoundAt] = nums[current]
+            if (lastNonZeroFoundAt != current) {
+                nums[current] = 0
+            }
+            lastNonZeroFoundAt++
+        }
+    }
+}
+}
