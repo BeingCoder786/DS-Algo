@@ -1,0 +1,18 @@
+class Solution {
+    fun sortColors(nums: IntArray): Unit {
+        var temp = IntArray(3) { 0 }
+          for(i in 0 until nums.size){
+              temp[nums[i]]++
+          }
+
+          var level =0 
+          for(i in 0 until nums.size){
+              
+              while(temp[level]==0){
+                level++
+              }
+              nums[i]=level
+              temp[level]--
+          }
+    }
+}
