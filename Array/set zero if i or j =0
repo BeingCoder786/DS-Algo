@@ -1,0 +1,29 @@
+class Solution {
+    fun setZeroes(matrix: Array<IntArray>) {
+
+       var m = matrix.size
+       var n = matrix[0].size
+
+       var row = IntArray(m) {-1}
+       var col = IntArray (n) {-1}
+
+       for(i in 0 until m){
+        for(j in 0 until n){
+            if(matrix[i][j]==0){
+                row[i]= 0
+                col[j] =0 
+            }
+        }
+       }
+
+       for(i in 0 until m){
+        for(j in 0 until n){
+            if(row[i]==0||col[j]==0){
+                matrix[i][j] =0
+             }
+        }
+       }
+
+}
+}
+
