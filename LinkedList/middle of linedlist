@@ -1,0 +1,43 @@
+/**
+ * Example:
+ * var li = ListNode(5)
+ * var v = li.`val`
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+class Solution {
+    fun middleNode(head: ListNode?): ListNode? {
+        if(head == null) return null
+
+        var length = getMiddleNode(head)
+        print(length)
+
+       var middle = (length+1)/2
+       var count =0
+       var temp = head
+       while(temp!=null){
+        if(count== middle)
+         return temp
+        temp = temp.next
+        count++
+        
+       }
+      return head
+    }
+
+    fun getMiddleNode(head: ListNode) : Int {
+        var temp = head
+         var count = 0
+        while(temp.next!=null){
+            temp = temp.next
+             count++
+        }
+        return count
+        
+    }
+}
+
+
+optimize approach - twopointer slow and fast, if fast is null, slow is on mid.
