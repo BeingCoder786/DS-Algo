@@ -1,0 +1,17 @@
+
+fun reverseLinkedList(head: ListNode?): ListNode? {
+    var prev: ListNode? = null
+    var current = head
+    var next: ListNode? = null
+    
+    while (current != null) {
+        next = current.next // Save the next node
+        current.next = prev // Reverse the link
+        prev = current // Move prev to current
+        current = next // Move to the next node in the list
+    }
+    
+    return prev // New head of the reversed list
+
+   - either you use stack to reverse
+- or optimize by 3 pointer prev,current,next
