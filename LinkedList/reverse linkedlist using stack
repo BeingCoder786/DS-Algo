@@ -1,0 +1,23 @@
+class Solution {
+    fun reverseList(head: ListNode?): ListNode? {
+    if((head == null)||(head.next==null)) return head;
+    
+    var st = Stack<ListNode>()
+    var temp : ListNode= head
+    while(temp.next != null){
+        st.push(temp);
+        temp = temp.next;
+    }
+    
+   var head1 = temp;
+    
+    while(!st.isEmpty()){
+        temp.next = st.peek()
+        st.pop()
+        temp = temp.next
+    }
+    temp.next = null
+    return head1
+    }
+        
+}
