@@ -1,0 +1,34 @@
+/**
+ * Example:
+ * var li = ListNode(5)
+ * var v = li.`val`
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+
+class Solution {
+    fun getIntersectionNode(head1:ListNode?, head2:ListNode?):ListNode? {
+    val nodeMap = mutableMapOf<ListNode, Boolean>()
+    
+    // Add all nodes from the first list to the map
+    var current = head1
+    while (current != null) {
+        nodeMap[current] = true
+        current = current.next
+    }
+
+    // Check each node in the second list to see if it exists in the map
+    current = head2
+    while (current != null) {
+        if (nodeMap.contains(current)) {
+            return current // Return the intersection node
+        }
+        current = current.next
+    }
+    
+    // If intersection is not present between the lists, return null
+    return null
+    }
+}
