@@ -1,0 +1,42 @@
+/**
+ * Example:
+ * var li = ListNode(5)
+ * var v = li.`val`
+ * Definition for singly-linked list.
+ * class ListNode(var `val`: Int) {
+ *     var next: ListNode? = null
+ * }
+ */
+class Solution {
+    fun removeNthFromEnd(head: ListNode?, n: Int): ListNode? {
+   if (head == null) return null
+
+    var length = 0
+    var temp = head
+    while (temp != null) {
+        length++
+        temp = temp.next
+    }
+
+    // Determine the position from the start
+    val deleteNodeFrom = length - n
+
+    // If the node to delete is the head node
+    if (deleteNodeFrom == 0) {
+        return head.next
+    }
+
+    // Traverse to the node just before the one to be deleted
+    temp = head
+    var count = 0
+    while (count < deleteNodeFrom - 1) {
+        temp = temp?.next
+        count++
+    }
+
+    // Delete the nth node from the end
+    temp?.next = temp?.next?.next
+
+    return head
+}
+}
