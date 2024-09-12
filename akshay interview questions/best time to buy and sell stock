@@ -1,0 +1,28 @@
+
+
+fun Prices(prices: IntArray) : Int{
+   var maxProfit = Int.MIN_VALUE
+   var min = Int.MAX_VALUE
+
+   for(i in 0 until prices.size){
+     var buy = prices[i]
+     if(buy<min)
+      min = buy
+    else{
+         if(max<buy-min)
+           maxProfit = buy-min
+        }
+        
+}
+return maxProfit
+
+}
+
+
+brute force
+for(i in 0 until prices.size){
+var buy = prices[i]
+for(j in i+1; until prices.size){
+      if(a[j]>prices[j]){
+      max = maxOf(max,a[j]-prices[j]
+}
