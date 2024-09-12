@@ -1,0 +1,46 @@
+for(i in 0 until nums.size){
+for(j in i+1 until nums.size){
+if(nums[j] == target - nums[i])
+   return listof(i,j)
+
+
+
+
+optmize map
+
+fun twoSum(nums:MutableList<Int>, target :Int){
+
+val map = mutableMapOf<Int,Int>()
+
+for(i in 0 until nums.size){
+    if(map.contains(target-nums[i])
+        return listOf(i,map[target-nums[i]])
+
+   map[nums[i]]= i
+}
+
+}
+
+ fun twoSum(nums: IntArray, target: Int): IntArray {
+          
+          var result = mutableListOf<Int>()
+          var sum =0 
+           val map = mutableMapOf<Int,Int>()
+             
+           for(i in 0 until nums.size){
+                if(map.contains(target-nums[i])){
+                     result.add(i)
+                     result.add(map[target-nums[i]]!!)
+                }
+                else{
+                    map[nums[i]] = i
+                }
+               
+           }
+
+
+          
+          return result.toIntArray()
+
+        
+    }
