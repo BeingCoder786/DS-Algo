@@ -1,30 +1,30 @@
 class Solution {
-fun merge(intervals: Array<IntArray>): Array<IntArray> {
-    if (intervals.isEmpty()) return arrayOf() // Handle edge case
+    fun merge(intervals: Array<IntArray>): Array<IntArray> {
+        // Sort the intervals based on the start value
+        val sortedIntervals = intervals.sortedWith(compareBy { it[0] })
 
-    // Sort intervals by the start value
-    val sortedIntervals = intervals.sortedBy { it[0] }
-    val result = mutableListOf<IntArray>()
-    
-    var currInterval = sortedIntervals[0]
-    result.add(currInterval)
+        val ans = mutableListOf<IntArray>()
 
-    for (i in 1 until sortedIntervals.size) {
-        val nextInterval = sortedIntervals[i]
+        var currInterval = sortedIntervals[0]
+        ans.add(currInterval)
 
-        if (currInterval[1] >= nextInterval[0]) {
-            // Overlapping intervals, merge them
-            currInterval[1] = maxOf(currInterval[1], nextInterval[1])
-        } else {
-            // No overlap, add the next interval to the result
-            currInterval = nextInterval
-            result.add(currInterval)
+        for (item in sortedIntervals) {
+            val curStart = currInterval[0]
+            val curEnd = currInterval[1]
+            val nextStart = item[0]
+            val nextEnd = item[1]
+
+            if (curEnd >= nextStart) {
+                // Merge the intervals
+                currInterval[1] = maxOf(curEnd, nextEnd)
+            } else {
+                // No overlap, add the current interval and move to the next
+                currInterval = item
+                ans.add(currInterval)
+            }
         }
+
+        // Convert the list of intervals to an array
+        return ans.toTypedArray()
     }
-
-    return result.toTypedArray()
-}
-
-
-
 }
