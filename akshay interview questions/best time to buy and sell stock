@@ -1,4 +1,4 @@
-
+//optmize apprach
 
 fun Prices(prices: IntArray) : Int{
    var maxProfit = Int.MIN_VALUE
