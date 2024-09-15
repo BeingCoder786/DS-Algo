@@ -1,0 +1,32 @@
+class Solution {
+    fun isAnagram(s: String, t: String): Boolean {
+        //return s.toCharArray().sorted().joinToString("") == t.toCharArray().sorted().joinToString("")
+        val map = mutableMapOf<Char,Int>()
+           if(s.length!=t.length) return false
+        for(i in 0 until s.length){
+            map[s[i]] = map.getOrDefault(s[i],0)+1
+        }
+       for (i in t.indices) {
+          map[t[i]] = map.getOrDefault(t[i], 0) - 1
+        }
+       return map.values.all { it == 0 }
+    }
+}
+
+// bit optimize
+fun isAnagram(s: String, t: String): Boolean {
+    if (s.length != t.length) return false
+
+    val count = mutableMapOf<Char, Int>()
+    
+    for (i in s.indices) {
+        count[s[i]] = count.getOrDefault(s[i], 0) + 1
+        count[t[i]] = count.getOrDefault(t[i], 0) - 1
+    }
+    
+    for ((_, value) in count) {
+        if (value != 0) return false
+    }
+    
+    return true
+}
