@@ -1,0 +1,47 @@
+class Solution {
+    fun isPalindrome(s: String): Boolean {
+        var temp : String =""
+        for(i in 0 until s.length){
+            if(s.get(i).isLetterOrDigit()){
+                temp+=s.get(i).lowercase()
+            }
+        }
+        print(temp)
+        var reever = temp.reversed()
+        print(reever)
+        return temp==reever
+    }
+}
+
+
+              // other approach
+ class Solution {
+ fun isPalindrome(s: String): Boolean {
+    var start = 0
+    var end = s.length - 1
+
+    while (start < end) {
+        val first = s[start]
+        val second = s[end]
+
+        if (!first.isLetterOrDigit()) {
+            start++
+            continue
+        }
+        if (!second.isLetterOrDigit()) {
+            end--
+            continue
+        }
+
+        if (first.lowercaseChar() != second.lowercaseChar()) {
+            return false
+        } else {
+            start++
+            end--
+        }
+    }
+    return true
+}
+
+}
+              
