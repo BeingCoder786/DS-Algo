@@ -19,7 +19,7 @@ return maxProfit
 }
 
 
-brute force
+brute force approach
 for(i in 0 until prices.size){
 var buy = prices[i]
 for(j in i+1; until prices.size){
