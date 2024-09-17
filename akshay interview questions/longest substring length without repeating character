@@ -1,0 +1,56 @@
+
+fun longestSubstring(s:String) : Int{
+var a = IntArray(128)
+
+var start =0
+var end = 0
+var max =0
+
+while(end<s.length){
+a[s[end].toInt]++
+if(a[s[end].toInt]>1){
+  while(a[s[end].toInt]>1){
+      a[s[end].toInt]--
+      start++
+
+}
+}
+
+max = maxOf(max,end-start+1)
+end++// move the end of windoew
+
+}
+return end
+}
+
+
+//using withou ascii character
+fun longestSubstring(s: String): Int {
+    val charMap = mutableMapOf<Char, Int>()  // Map to count occurrences of characters
+    var start = 0
+    var end = 0
+    var max = 0
+
+    while (end < s.length) {
+        val endChar = s[end]
+        
+        // Increment the count of the current character
+        charMap[endChar] = charMap.getOrDefault(endChar, 0) + 1
+        
+        // If the current character count is more than 1, shrink the window from the start
+        while (charMap[endChar]!! > 1) {
+            val startChar = s[start]
+            charMap[startChar] = charMap[startChar]!! - 1
+            if (charMap[startChar] == 0) {
+                charMap.remove(startChar)
+            }
+            start++
+        }
+
+        // Update the maximum length of the substring
+        max = maxOf(max, end - start + 1)
+        end++  // Move the end of the window forward
+    }
+
+    return max
+}
