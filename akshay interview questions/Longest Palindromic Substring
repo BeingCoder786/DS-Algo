@@ -1,0 +1,40 @@
+class Solution {
+    fun longestPalindrome(s: String): String {
+        if (s.length == 1) {
+            return s
+        }
+
+        var maxlength = 1
+        var start = 0
+
+        for (i in 1 until s.length) {
+            var left = i - 1
+            var right = i
+
+            // Check for even-length palindromes
+            while (left >= 0 && right < s.length && s[left] == s[right]) {
+                if (right - left + 1 > maxlength) {
+                    maxlength = right - left + 1
+                    start = left
+                }
+                left--
+                right++
+            }
+
+            left = i - 1
+            right = i + 1
+
+            // Check for odd-length palindromes
+            while (left >= 0 && right < s.length && s[left] == s[right]) {
+                if (right - left + 1 > maxlength) {
+                    maxlength = right - left + 1
+                    start = left
+                }
+                left--
+                right++
+            }
+        }
+
+        return s.substring(start, start + maxlength)
+    }
+}
