@@ -1,4 +1,4 @@
-
+//brute force
 class Solution {
     fun threeSum(nums: IntArray): List<List<Int>> {
         val list = mutableListOf<List<Int>>()
