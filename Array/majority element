@@ -1,3 +1,5 @@
+//optimzed solution
+
 class Solution {
     fun majorityElement(nums: IntArray): List<Int> {
          var list = mutableListOf<Int>()
