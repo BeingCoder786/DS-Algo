@@ -54,3 +54,32 @@ fun longestSubstring(s: String): Int {
 
     return max
 }
+
+
+//burtefore
+    var s = "pwwkew"
+    var maxLength = 0
+
+    // Iterate through the string starting from each character
+    for (i in s.indices) {
+        val map = mutableMapOf<Char, Boolean>()
+        var length = 0
+
+        // Check the substring starting from character at index i
+        for (j in i until s.length) {
+            if (map.containsKey(s[j])) {
+                break // Stop if we encounter a repeating character
+            } else {
+                map[s[j]] = true // Add character to map
+                length++ // Increase the length of current substring
+            }
+        }
+
+        // Update maxLength if the current length is greater
+        if (length > maxLength) {
+            maxLength = length
+        }
+    }
+
+        println(maxLength)
+}
