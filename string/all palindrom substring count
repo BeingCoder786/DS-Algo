@@ -1,4 +1,4 @@
-
+https://leetcode.com/problems/palindromic-substrings/
 class Solution {
     fun countSubstrings(s: String): Int {
     if (s.length == 1) return 1
