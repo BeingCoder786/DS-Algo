@@ -1,4 +1,6 @@
-    fun majorityElement(nums: IntArray): Int {
+https://leetcode.com/problems/majority-element/description/
+
+fun majorityElement(nums: IntArray): Int {
         var n = nums.size
         val map = mutableMapOf<Int,Int>()
         for(i in nums.indices){
