@@ -1,3 +1,5 @@
+https://leetcode.com/problems/isomorphic-strings/description/
+
 class Solution {
     fun isIsomorphic(s: String, t: String): Boolean {
         val l1 = s.length
