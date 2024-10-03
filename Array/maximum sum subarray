@@ -15,3 +15,17 @@ class Solution {
    return max
     }
 }
+//bruteforce
+
+    var summ =0
+    var maxx =0
+    for(i in 0 until nums.size){
+        summ =0
+        for(j in i until nums.size ){
+            summ+=nums[j]
+            if(maxx<summ) {
+                maxx = summ
+            }
+        }
+    }
+    println(maxx)
