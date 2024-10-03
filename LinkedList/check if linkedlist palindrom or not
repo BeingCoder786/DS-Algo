@@ -1,4 +1,5 @@
-   public boolean isPalindrome(ListNode head) {
+https://leetcode.com/problems/palindrome-linked-list/
+public boolean isPalindrome(ListNode head) {
         Stack<Integer> s = new Stack<Integer>();
         ListNode temp = head;
         while(temp!= null){
