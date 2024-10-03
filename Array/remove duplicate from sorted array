@@ -1,3 +1,4 @@
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/
 using two pointer
 
     fun removeDuplicates(nums: IntArray): Int {
@@ -16,3 +17,19 @@ using two pointer
         return i+1;
         
     }
+
+
+
+
+
+    val nums = intArrayOf(1, 1, 2, 2, 3, 4, 4, 5)
+    var result = mutableListOf<Int>()
+    var previous = nums[0]
+    result.add(previous)
+    for (i in 1 until nums.size) {
+        if (nums[i] != previous) {
+            result.add(nums[i])
+            previous = nums[i]
+        }
+    }
+    println(result)
