@@ -1,3 +1,5 @@
+
+https://leetcode.com/problems/maximum-product-subarray/description/
 class Solution {
     fun maxProduct(nums: IntArray): Int {
         var max = Int.MIN_VALUE
