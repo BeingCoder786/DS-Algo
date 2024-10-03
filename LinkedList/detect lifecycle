@@ -1,3 +1,5 @@
+https://leetcode.com/problems/linked-list-cycle/description/
+
 class Solution {
     fun hasCycle(head: ListNode?): Boolean {
         var slow = head
