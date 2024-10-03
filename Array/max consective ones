@@ -1,3 +1,4 @@
+https://leetcode.com/problems/max-consecutive-ones/description/
 class Solution {
     fun findMaxConsecutiveOnes(nums: IntArray): Int {
         var count =0
