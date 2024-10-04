@@ -1,0 +1,21 @@
+https://leetcode.com/problems/binary-tree-postorder-traversal/
+class Solution {
+    fun postorderTraversal(root: TreeNode?): List<Int> {
+        var list = mutableListOf<Int>()
+         
+         postOrder(root,list)
+
+         return list
+
+    }
+
+    fun postOrder(root: TreeNode?, list: MutableList<Int>){
+        if(root==null)
+         return
+
+         postOrder(root.left,list)
+         postOrder(root.right,list)
+         list.add(root.`val`)
+
+    }
+}
