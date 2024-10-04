@@ -1,0 +1,17 @@
+https://leetcode.com/problems/binary-tree-inorder-traversal/
+
+
+class Solution {
+    fun inorderTraversal(root: TreeNode?): List<Int> {
+        var resultList = mutableListOf<Int>()
+        inorder(root,resultList)
+        return resultList
+        
+    }
+    fun inorder(root:TreeNode?, resultList: MutableList<Int>) {
+        if(root ==null ) return 
+        inorder(root.left,resultList)
+        resultList.add(root.`val`)
+        inorder(root.right,resultList)
+    }
+}
