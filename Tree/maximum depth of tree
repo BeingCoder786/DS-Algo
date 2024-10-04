@@ -1,0 +1,14 @@
+https://leetcode.com/problems/maximum-depth-of-binary-tree/description/
+class Solution {
+    fun maxDepth(root: TreeNode?): Int {
+
+        if(root==null)
+        return 0
+
+        var leftTree = maxDepth(root.left)
+        var rightTree = maxDepth(root.right)
+
+        return maxOf(leftTree,rightTree)+1
+        
+    }
+}
