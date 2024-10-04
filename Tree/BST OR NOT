@@ -1,0 +1,23 @@
+    fun isValidBST(root: TreeNode?): Boolean {
+        var list = mutableListOf<Int>()
+        var output = inorder(root,list)
+        print(output)
+
+        for(i in 0 until output.size-1)
+        {
+            if(output[i]>=output[i+1])
+            return false
+        }
+        return true
+    }
+
+    fun inorder(root: TreeNode?,list:MutableList<Int>) : List<Int>{
+       if(root== null)
+           return list
+        inorder(root.left,list)
+        list.add(root.`val`)
+        inorder(root.right,list)
+
+          return list
+    }
+}
