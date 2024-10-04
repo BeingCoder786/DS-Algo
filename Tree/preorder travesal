@@ -1,0 +1,22 @@
+https://leetcode.com/problems/binary-tree-preorder-traversal/
+
+class Solution {
+    fun preorderTraversal(root: TreeNode?): List<Int> {
+       val list = mutableListOf<Int>()
+        traversePreOrder(root, list)
+        return list
+    }
+    
+        private fun traversePreOrder(node: TreeNode?, list: MutableList<Int>) {
+        if (node == null) return
+
+        // Visit the root
+        list.add(node.`val`)
+
+        // Traverse the left subtree
+        traversePreOrder(node.left, list)
+
+        // Traverse the right subtree
+        traversePreOrder(node.right, list)
+    }
+}
