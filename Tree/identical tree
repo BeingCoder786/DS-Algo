@@ -1,0 +1,12 @@
+https://leetcode.com/problems/same-tree/description/
+
+  fun isSameTree(p: TreeNode?, q: TreeNode?): Boolean {
+    // Both trees are null, they are the same
+    if (p == null && q == null) return true
+
+    // One of the trees is null, they are not the same
+    if (p == null || q == null) return false
+
+    // Compare the current nodes and recursively check their children
+    return (p.`val` == q.`val` && isSameTree(p.left, q.left) && isSameTree(p.right, q.right))
+}
