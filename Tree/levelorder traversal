@@ -1,0 +1,42 @@
+package dsinterview
+
+import java.util.LinkedList
+import java.util.Queue
+
+// Binary Tree Node class
+class BTTreeNode(var data: Int) {
+    var left: BTTreeNode? = null
+    var right: BTTreeNode? = null
+}
+
+fun levelOrderTraversal(root: BTTreeNode?) {
+       if(root==null)
+           return
+
+        val queue: Queue<BTTreeNode> = LinkedList()
+
+       queue.add(root)
+    while (queue.isNotEmpty()){
+        var currentNode = queue.poll()
+        print(currentNode.data)
+        if(currentNode.left!=null)
+            queue.add(currentNode.left)
+        if(currentNode.right!=null)
+            queue.add(currentNode.right)
+
+    }
+}
+
+fun main() {
+    // Create a sample tree
+    val root = BTTreeNode(1)
+    root.left = BTTreeNode(2)
+    root.right = BTTreeNode(3)
+    root.left?.left = BTTreeNode(4)
+    root.left?.right = BTTreeNode(5)
+    root.right?.left = BTTreeNode(6)
+    root.right?.right = BTTreeNode(7)
+
+    println("Level Order Traversal:")
+    levelOrderTraversal(root)  // Output: 1 2 3 4 5 6 7
+}
