@@ -1,0 +1,76 @@
+
+
+fun main(){
+       //adajacency
+        var graph = mutableMapOf<Int,MutableList<Int>>()
+    
+        fun addEdge(u:Int,v:Int){
+        
+        if(graph.containsKey(u)){
+            graph[u]!!.add(v)
+        }
+        else{
+            graph[u]= mutableListOf(v)
+        }
+        
+        
+            if(graph.containsKey(v)){//unidrection
+            graph[v]!!.add(u)
+        }
+        else{
+            graph[v]= mutableListOf(u)
+        }
+        
+    }
+    
+    
+  addEdge(0, 1)
+    addEdge(0, 2)
+    addEdge(1, 3)
+    addEdge(2, 3)
+println()
+println("grpah")
+for(node in graph.keys){
+    print("$node ->")
+    for(neigth in graph[node]!!){
+        print(" $neigth  ")
+    }
+    println()
+    
+}
+    
+
+    
+    //adjacency matrix
+          n = 4
+        val matrixx = Array(n) { IntArray(n) }
+
+    fun addEdgex(u: Int, v: Int) {
+        matrixx[u][v] = 1
+        matrixx[v][u] = 1   // undirected
+    }
+
+    addEdgex(0, 1)
+    addEdgex(0, 2)
+    addEdgex(1, 3)
+    addEdgex(2, 3)
+
+    println()
+    // print matrix
+    for (i in 0 until n) {
+        for (j in 0 until n) {
+            print("${matrixx[i][j]} ")
+        }
+        println()
+    }
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+}
