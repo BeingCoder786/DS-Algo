@@ -1,0 +1,69 @@
+val graph = mutableMapOf<Int, MutableList<Int>>()
+
+fun addEdge(u: Int, v: Int) {
+    if (graph.containsKey(u)) {
+        graph[u]!!.add(v)
+    } else {
+        graph[u] = mutableListOf(v)
+    }
+
+    if (graph.containsKey(v)) {
+        graph[v]!!.add(u)
+    } else {
+        graph[v] = mutableListOf(u)
+    }
+}
+fun hasCycle(): Boolean {
+
+    val visited = mutableSetOf<Int>()
+
+    for (node in graph.keys) {
+        if (!visited.contains(node)) {
+            if (dfs(node, -1, visited)) {
+                return true
+            }
+        }
+    }
+    return false
+}
+
+fun dfs(curr: Int, parent: Int, visited: MutableSet<Int>): Boolean {
+
+    visited.add(curr)
+
+    for (neigh in graph[curr]!!) {
+
+        if (!visited.contains(neigh)) {
+            if (dfs(neigh, curr, visited)) {
+                return true
+            }
+        }
+        else if (neigh != parent) {
+            return true   // cycle found
+        }
+    }
+    return false
+}
+fun main() {
+
+    addEdge(0, 1)
+    addEdge(1, 2)
+    addEdge(2, 0) // cycle
+    addEdge(2, 3)
+
+    println(hasCycle()) // true
+}
+
+Dry Run (MOST IMPORTANT)
+
+Start DFS from 0:
+
+0 → 1 → 2
+
+
+From 2:
+
+neighbor 0 already visited
+
+0 != parent (1)
+➡️ Cycle detected
