@@ -36,3 +36,43 @@ class Solution {
 
     }
 }
+
+
+
+
+
+//kotin
+
+package array
+
+import java.util.Collections.swap
+
+fun main() {
+    var nums = mutableListOf(2, 0, 1)
+    var start = 0
+    var mid = 0
+    var end = nums.size - 1
+
+
+    while (mid <= end) {
+        when (nums[mid]) {
+
+            0 -> {
+                swap(nums, start, mid)
+                start++
+                mid++
+            }
+
+            1 -> {
+                mid++
+            }
+
+            2 -> {
+                swap(nums, mid, end)
+                end--
+            }
+        }
+    }
+
+    print(nums)
+}
