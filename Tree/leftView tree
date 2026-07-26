@@ -1,0 +1,86 @@
+package Tree
+
+import java.util.LinkedList
+import java.util.Queue
+
+class Leftview(
+    var data: Int,
+    var left: Leftview? = null,
+    var right: Leftview? = null
+)
+
+fun main() {
+
+    var root = Leftview(1)
+    root.left = Leftview(5)
+    root.right = Leftview(2)
+    root.left?.right = Leftview(9)
+    root.right?.right = Leftview(3)
+
+    /*    1
+        5  2
+        9   3  //o/p -1,5,9*/
+
+    print(leftviewTree(root))
+
+    print(leftviewTreeBFs(root))
+}
+
+fun leftviewTreeBFs(root: Leftview): List<Int> {
+
+    if (root == null) return emptyList()
+
+    val result = mutableListOf<Int>()
+    val queue: Queue<Leftview> = LinkedList()
+
+    queue.add(root)
+
+    while (queue.isNotEmpty()) {
+
+        val size = queue.size
+
+        for (i in 0 until size) {
+
+            val current = queue.poll()
+
+            // Last node of the current level
+            if (i == size - 1) {
+                result.add(current.data)
+            }
+
+            current.right?.let { queue.add(it) }
+            current.left?.let { queue.add(it) }
+        }
+    }
+
+    return result
+
+}
+
+fun leftviewTree(root: Leftview?): List<Int> {
+
+    var list = mutableListOf<Int>()
+
+    dfss(root, 0, list)
+
+
+
+
+
+    return list
+}
+
+fun dfss(root: Leftview?, level: Int, list: MutableList<Int>) {
+
+    if (root == null) return
+
+    if (level == list.size) {
+        list.add(root.data)
+    }
+
+    dfss(root.left, level + 1, list)
+    dfss(root.right, level + 1, list)
+
+
+}
+
