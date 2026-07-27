@@ -1,0 +1,36 @@
+package Tree
+import java.util.*
+
+
+fun verticalOrder(root: TreeNode?): List<List<Int>> {
+
+    if (root == null) return emptyList()
+
+    val map = TreeMap<Int, MutableList<Int>>()
+
+    val queue: Queue<Pair<TreeNode, Int>> = LinkedList()
+
+    queue.add(Pair(root, 0))
+
+    while (queue.isNotEmpty()) {
+
+        val current = queue.poll()
+
+        val node = current.first
+        val hd = current.second
+
+        if (!map.containsKey(hd)) {
+            map[hd] = mutableListOf()
+        }
+
+        map[hd]!!.add(node.value)
+
+        if (node.left != null)
+            queue.add(Pair(node.left!!, hd - 1))
+
+        if (node.right != null)
+            queue.add(Pair(node.right!!, hd + 1))
+    }
+
+    return map.values.toList()
+}
