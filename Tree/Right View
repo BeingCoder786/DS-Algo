@@ -1,0 +1,86 @@
+package Tree
+
+import java.util.LinkedList
+import java.util.Queue
+
+class RIghtVIewTree(
+    var data: Int,
+    var left: RIghtVIewTree? = null,
+    var right: RIghtVIewTree? = null
+)
+
+fun main() {
+    var root = RIghtVIewTree(1)
+    root.left = RIghtVIewTree(5)
+    root.right = RIghtVIewTree(2)
+    root.left?.right = RIghtVIewTree(9)
+    root.right?.right = RIghtVIewTree(3)
+
+
+    var list = rightView(root)
+    println(list)
+}
+
+fun rightView(root: RIghtVIewTree): List<Int> {
+
+    var result = mutableListOf<Int>()
+
+    dfs(root, 0, result)  //dfs
+    var resultt = bfs(root) //bfs
+
+    println(resultt)
+    return result
+
+}
+
+fun bfs(root: RIghtVIewTree): List<Int> {
+
+    if (root == null) return emptyList()
+
+    val result = mutableListOf<Int>()
+    val queue: Queue<RIghtVIewTree> = LinkedList()
+
+    queue.add(root)
+
+    while (queue.isNotEmpty()) {
+
+        val size = queue.size
+
+        for (i in 0 until size) {
+
+            val current = queue.poll()
+
+            // Last node of the current level
+            if (i == size - 1) {
+                result.add(current.data)
+            }
+
+            current.left?.let { queue.add(it) }
+            current.right?.let { queue.add(it) }
+        }
+    }
+
+    return result
+}
+
+
+fun dfs(root: RIghtVIewTree?, level: Int, result: MutableList<Int>) {
+
+    if (root == null) return
+
+    if (level == result.size) {
+        result.add(root.data)
+    }
+
+    //dfs
+    dfs(root.right, level + 1, result)
+    dfs(root.left, level + 1, result)
+
+
+}
+/*
+
+     1
+    2    3
+  5   6      4
+        7*/
