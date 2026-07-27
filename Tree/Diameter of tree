@@ -1,0 +1,36 @@
+package Tree
+
+class TreeNodeeee(var `val`: Int) {
+    var left: TreeNodeeee? = null
+    var right: TreeNodeeee? = null
+}
+
+fun main() {
+
+    val root = TreeNodeeee(1)
+    root.left = TreeNodeeee(2)
+    root.right = TreeNodeeee(3)
+    root.left?.left = TreeNodeeee(4)
+    root.left?.right = TreeNodeeee(5)
+
+    var diameter = 0
+
+    fun height(node: TreeNodeeee?): Int {
+
+        if (node == null) return 0
+
+        val leftHeight = height(node.left)
+        val rightHeight = height(node.right)
+
+        diameter = maxOf(diameter, leftHeight + rightHeight)
+
+        return maxOf(leftHeight, rightHeight) + 1
+    }
+
+    fun diameterOfBinaryTree(root: TreeNodeeee?): Int {
+        height(root)
+        return diameter
+    }
+
+    println(diameterOfBinaryTree(root))
+}
