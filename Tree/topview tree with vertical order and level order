@@ -1,0 +1,37 @@
+package Tree
+
+import java.util.*
+
+//level order with vertical travesal horizaon distance
+fun topView(root: TreeNode?): List<Int> {
+
+    if (root == null) return emptyList()
+
+    val map = TreeMap<Int, Int>() //Treemap for ordered key
+
+    val queue: Queue<Pair<TreeNode, Int>> = LinkedList() //node and horizaontal ditance
+
+    queue.add(Pair(root, 0))
+
+    while (queue.isNotEmpty()) {
+
+        val current = queue.poll()
+
+        val node = current.first
+        val hd = current.second
+
+        if (!map.containsKey(hd)) {
+            map[hd] = node.value
+        }
+
+        if (node.left != null) {
+            queue.add(Pair(node.left!!, hd - 1))
+        }
+
+        if (node.right != null) {
+            queue.add(Pair(node.right!!, hd + 1))
+        }
+    }
+
+    return map.values.toList()
+}
