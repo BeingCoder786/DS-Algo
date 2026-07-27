@@ -1,0 +1,18 @@
+package Tree
+
+fun main() {
+    var root = TreeNode(1)
+    root.left = TreeNode(2)
+    root.right = TreeNode(3)
+    root.left!!.left = TreeNode(3)
+
+    println(summ(root))
+
+}
+
+fun summ(node: TreeNode?): Int {
+
+    if (node == null) return 0
+
+    return node.value + summ(node.left) + summ(node.right)
+}
