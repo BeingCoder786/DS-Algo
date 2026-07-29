@@ -1,0 +1,83 @@
+package Graph
+
+
+import java.util.LinkedList
+import java.util.Queue
+
+val grap = mutableMapOf<Int, MutableList<Int>>()
+
+fun addadd(u: Int, v: Int) {
+
+    if (grap.containsKey(u)) {
+        grap[u]!!.add(v)
+    } else {
+        grap[u] = mutableListOf(v)
+    }
+
+    // Make sure destination node also exists
+    if (!grap.containsKey(v)) {
+        grap[v] = mutableListOf()
+    }
+}
+
+fun topologicalSort() {
+
+    // Step 1: Calculate Indegree
+    val indegree = mutableMapOf<Int, Int>()
+
+    // Initialize all indegrees to 0
+    for (node in grap.keys) {
+        indegree[node] = 0
+    }
+
+    // Count incoming edges
+    for (node in grap.keys) {
+        for (neighbor in grap[node]!!) {
+            indegree[neighbor] = indegree[neighbor]!! + 1
+        }
+    }
+
+    println("Indegree = $indegree")
+
+    // Step 2: Add all nodes having indegree = 0
+    val queue: Queue<Int> = LinkedList()
+
+    for (node in indegree.keys) {
+        if (indegree[node] == 0) {
+            queue.offer(node)
+        }
+    }
+
+    // Step 3: BFS
+    while (queue.isNotEmpty()) {
+
+        val current = queue.poll()
+
+        print("$current ")
+
+        for (neighbor in grap[current]!!) {
+
+            indegree[neighbor] = indegree[neighbor]!! - 1
+
+            if (indegree[neighbor] == 0) {
+                queue.offer(neighbor)
+            }
+        }
+    }
+}
+
+fun main() {
+
+    addadd(5, 2)
+    addadd(5, 0)
+    addadd(4, 0)
+    addadd(4, 1)
+    addadd(2, 3)
+    addadd(3, 1)
+
+    println("grap = $grap")
+
+    println("Topological Order:")
+
+    topologicalSort()
+}
