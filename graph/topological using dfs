@@ -1,0 +1,62 @@
+package Graph
+
+
+import java.util.Stack
+
+val gra = mutableMapOf<Int, MutableList<Int>>()
+
+fun ad(u: Int, v: Int) {
+
+    if (gra.containsKey(u)) {
+        gra[u]!!.add(v)
+    } else {
+        gra[u] = mutableListOf(v)
+    }
+
+    // Make sure destination node also exists
+    if (!gra.containsKey(v)) {
+        gra[v] = mutableListOf()
+    }
+}
+
+fun dfs(node: Int, visited: MutableSet<Int>, stack: Stack<Int>) {
+
+    visited.add(node)
+
+    for (neighbor in gra[node]!!) {
+        if (!visited.contains(neighbor)) {
+            dfs(neighbor, visited, stack)
+        }
+    }
+
+    // Push after visiting all neighbours
+    stack.push(node)
+}
+
+fun topologicalSortDFS() {
+
+    val visited = mutableSetOf<Int>()
+    val stack = Stack<Int>()
+
+    for (node in gra.keys) {
+        if (!visited.contains(node)) {
+            dfs(node, visited, stack)
+        }
+    }
+
+    while (stack.isNotEmpty()) {
+        print("${stack.pop()} ")
+    }
+}
+
+fun main() {
+
+    ad(5, 2)
+    ad(5, 0)
+    ad(4, 0)
+    ad(4, 1)
+    ad(2, 3)
+    ad(3, 1)
+
+    topologicalSortDFS()
+}
