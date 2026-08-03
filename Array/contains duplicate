@@ -10,3 +10,14 @@ class Solution {
         
     }
 }
+
+
+booleanarray or hashset
+val seen = BooleanArray(1001)
+
+for (num in nums) {
+    if (seen[num])
+        return true
+
+    seen[num] = true
+}
