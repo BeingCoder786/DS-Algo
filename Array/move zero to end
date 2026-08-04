@@ -16,3 +16,26 @@ class Solution {
     }
 }
 }
+
+class Solution {
+    fun moveZeroes(nums: IntArray): Unit {
+        
+        var j = 0
+        var count =0
+        for(i in 0 until nums.size){
+            if(nums[i]!=0){
+             nums[j] = nums[i]
+             j++
+            }
+            else
+            {
+                count++
+            }
+        }
+        while(count>0){
+            nums[j] = 0
+            j++
+            count--
+        }
+    }
+}
